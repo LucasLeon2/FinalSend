@@ -4,8 +4,8 @@ import win32com.client as win32
 
 outlook = win32.Dispatch("Outlook.Application")
 
-anexoqaf = "C:\\Users\lucas\PycharmProjects\pythonProject\E-mail\email.xlsx"
-anexotermo = "C:\\Users\lucas\PycharmProjects\pythonProject\E-mail\email2.xlsx"
+anexoqaf = "C:\\Users\lucas.leon\Desktop\Envio_for\F-077 - 12 - QAF_SEQ - REV.12.xlsx"
+anexotermo = "C:\\Users\lucas.leon\Desktop\Envio_for\SOCIAL AND ENVIRONMENTAL RESPONSIBILITY COMMITMENT v2.pdf"
 
 class SaveMail:
 
@@ -359,16 +359,16 @@ class MailBody:
 
         return self.text.format(alv, l, q, ter, con, dr, i9, i14, i45)
 
-dados = pd.read_excel(r'email.xlsx')
+dados = pd.read_excel(r'C:\\Users\lucas.leon\Desktop\Envio_for\Planilha_fornecedores_email.xlsx')
 
 
 codigo = dados['Código']
 
-alvara = dados['Nome Fornecedor']
+alvara = dados['Alvará']
 
 contrato = dados['Contrato social']
 
-demo = dados['Demonstrativo de resultado']
+demo = dados['Demonstrativo do resultado']
 
 lao = dados['LAO']
 
@@ -506,7 +506,7 @@ for n in range(0, 100):
 
         i45.append('')
 
-for n in range(0, 385):
+for n in range(0, 384):
 
     if master[n] == 1:
 
