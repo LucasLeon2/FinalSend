@@ -506,7 +506,7 @@ for n in range(0, 100):
 
         i45.append('')
 
-for n in range(0, 384):
+for n in range(0, 382):
 
     if master[n] == 1:
 
