@@ -153,13 +153,13 @@ class MailBody:
 
                                                                                 <ul start="1" style="margin: 0; padding: 0; margin-left: 20px; list-style-type: revert; color: #000000; direction: ltr; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0px; line-height: 120%; text-align: left;">
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li>{}</li>
+                                                                                    {}
 
                                                                                 </ul>
 
@@ -195,15 +195,15 @@ class MailBody:
 
                                                                                 <ul start="1" style="margin: 0; padding: 0; margin-left: 20px; list-style-type: revert; color: #000000; direction: ltr; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0px; line-height: 120%; text-align: left;">
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li style="margin-bottom: 0px;">{}</li>
+                                                                                    {}
 
-                                                                                    <li>{}</li>
+                                                                                    {}
 
                                                                                 </ul>
 
@@ -327,32 +327,62 @@ class MailBody:
 
                 """
 
+        ladoA = '<li style="margin-bottom: 0px;">'
+        ladoB = '</li>'
+
+        if alvarat[n] == 1:
+            alv = ladoA + alv + ladoB
+
+        if laot[n] == 1:
+            l = ladoA + l + ladoB
+
+        if qaft[n] == 1:
+            q = ladoA + q + ladoB
+
+        if termot[n] == 1:
+            ter = ladoA + ter + ladoB
+
+        if contratot[n] == 1:
+            con = ladoA + con + ladoB
+
+        if demot[n] == 1:
+            dr = ladoA + dr + ladoB
+
+        if iso9t[n] == 1:
+            i9 = ladoA + i9 + ladoB
+
+        if iso14t[n] == 1:
+            i14 = ladoA + i14 + ladoB
+
+        if iso45t[n] == 1:
+            i45 = ladoA + i45 + ladoB
+
         return self.text.format(alv, l, q, ter, con, dr, i9, i14, i45)
 
 dados = pd.read_excel(r'email.xlsx')
 
 
-codigo = dados['A']
+codigo = dados['Código']
 
-alvara = dados['B']
+alvara = dados['Nome Fornecedor']
 
-contrato = dados['C']
+contrato = dados['Contrato social']
 
-demo = dados['D']
+demo = dados['Demonstrativo de resultado']
 
-lao = dados['E']
+lao = dados['LAO']
 
-qaf = dados['F']
+qaf = dados['QAF']
 
-termo = dados['G']
+termo = dados['Responsabilidade Social']
 
-iso9 = dados['H']
+iso9 = dados['ISO 9001']
 
-iso14 = dados['I']
+iso14 = dados['ISO 14001']
 
-iso45 = dados['J']
+iso45 = dados['ISO 45001']
 
-email = dados['K']
+email = dados['E-mail']
 
 
 master = []
@@ -410,7 +440,7 @@ for n in range(0, 100):
 
     else:
 
-        alv.append('\n')
+        alv.append('')
 
     if laot[n] == 1:
 
@@ -418,7 +448,7 @@ for n in range(0, 100):
 
     else:
 
-        l.append('\n')
+        l.append('')
 
     if qaft[n] == 1:
 
@@ -426,7 +456,7 @@ for n in range(0, 100):
 
     else:
 
-        q.append('\n')
+        q.append('')
 
     if termot[n] == 1:
 
@@ -434,7 +464,7 @@ for n in range(0, 100):
 
     else:
 
-        ter.append('\n')
+        ter.append('')
 
     if contratot[n] == 1:
 
@@ -442,7 +472,7 @@ for n in range(0, 100):
 
     else:
 
-        con.append('\n')
+        con.append('')
 
     if demot[n] == 1:
 
@@ -450,7 +480,7 @@ for n in range(0, 100):
 
     else:
 
-        dr.append('\n')
+        dr.append('')
 
     if iso9t[n] == 1:
 
@@ -458,7 +488,7 @@ for n in range(0, 100):
 
     else:
 
-        i9.append('\n')
+        i9.append('')
 
     if iso14t[n] == 1:
 
@@ -466,7 +496,7 @@ for n in range(0, 100):
 
     else:
 
-        i14.append('\n')
+        i14.append('')
 
     if iso45t[n] == 1:
 
@@ -474,15 +504,14 @@ for n in range(0, 100):
 
     else:
 
-        i45.append('\n')
+        i45.append('')
 
-for n in range(0, 99):
+for n in range(0, 385):
 
     if master[n] == 1:
 
         corpoemail = MailBody(alv[n], l[n], q[n], ter[n], con[n], dr[n], i9[n], i14[n], i45[n])
 
-        novoemail = SaveMail(corpoemail.text_block(), codigo[n], "lucasleon.ll@hotmail.com")
+        novoemail = SaveMail(corpoemail.text_block(), codigo[n], email[n])
 
         novoemail.new_mail()
-
